@@ -1,4 +1,4 @@
-const API = 'http://localhost:3000/api';
+const API = 'https://ticketly-ul2w.onrender.com';
 
 const auth = {
   user: null,
