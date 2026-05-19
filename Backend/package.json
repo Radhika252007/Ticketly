@@ -1,0 +1,46 @@
+{
+  "name": "ticketly",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@google/genai": "^1.48.0",
+    "@prisma/adapter-pg": "^7.4.2",
+    "@prisma/client": "^7.4.2",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.2",
+    "bullmq": "^5.70.1",
+    "cloudinary": "^1.41.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "crypto": "^1.0.1",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.0",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.9.3",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.2",
+    "morgan": "^1.10.1",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^8.0.1",
+    "nodemon": "^3.1.14",
+    "path": "^0.12.7",
+    "pg": "^8.20.0",
+    "prisma": "^7.4.2",
+    "razorpay": "^2.9.6",
+    "redlock": "^5.0.0-beta.2",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.1",
+    "dotenv": "^17.3.1"
+  }
+}

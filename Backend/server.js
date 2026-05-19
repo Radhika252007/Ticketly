@@ -1,0 +1,61 @@
+import 'dotenv/config';
+import app from './app.js';
+import prisma from './config/prisma.js';
+import client from './config/redis.js';
+import connectDB from './config/mongo.js';
+import http from 'http';
+import { initSocketServer } from './config/socket.js';
+
+import './workers/notification.worker.js';
+import './workers/event.worker.js';
+import './workers/booking.worker.js';
+
+import { scheduleCleanupJob } from './services/booking.service.js';
+
+const PORT = process.env.PORT || 8000;
+const server = http.createServer(app);
+
+const startServer = async () => {
+  try {
+
+    await prisma.$connect();
+
+    console.log('PostgreSQL connected');
+    console.log('Database',process.env.DIRECT_DATABASE_URL);
+
+
+    await connectDB();
+
+    await client.ping();
+    console.log('Redis connected');
+
+    initSocketServer(server);
+    console.log('Socket.io initialized');
+
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+  } catch (err) {
+    console.error('Failed to start server:', err.message);
+    process.exit(1);
+  }
+};
+
+process.on('SIGTERM', async () => {
+  console.log('SIGTERM received, shutting down...');
+  await prisma.$disconnect();
+  await client.quit();
+  process.exit(0);
+});
+
+process.on('SIGINT', async () => {
+  console.log('SIGINT received, shutting down...');
+  await prisma.$disconnect();
+  await client.quit();
+  process.exit(0);
+});
+
+startServer();
+await scheduleCleanupJob(); 
+
