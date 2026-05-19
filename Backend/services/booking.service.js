@@ -6,9 +6,7 @@ import { verifyHolds } from "./seats.service.js";
 import { notificationQueue, bookingQueue } from "../queues/index.js";
 import {createOrder, verifyPayment} from "./payment.service.js";
 import crypto from "crypto";
-import pkg from '@prisma/client';
-
-const {Prisma} = pkg;
+import { Prisma } from "../config/prisma.js";
 
 const initiateBooking = async (userId, eventId, seatIds) => {
     const activeBooking = await client.get(`active-booking:${userId}`);
