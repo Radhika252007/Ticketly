@@ -4,7 +4,6 @@ import client from "../config/redis.js";
 import { emitSeatUpdate } from '../config/socket.js';
 import { verifyHolds } from "./seats.service.js";
 import { notificationQueue, bookingQueue } from "../queues/index.js";
-import { Prisma } from '@prisma/client';
 import {createOrder, verifyPayment} from "./payment.service.js";
 import crypto from "crypto";
 
